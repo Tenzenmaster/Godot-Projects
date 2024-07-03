@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfa0h86yofkc5"]
+
+[ext_resource type="Script" path="res://ui/components/buttons/LoadMenuButton.cs" id="1_16lpu"]
+
+[node name="LoadMenuButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Load Menu"
+script = ExtResource("1_16lpu")
+
+[connection signal="pressed" from="." to="." method="OnPressed"]

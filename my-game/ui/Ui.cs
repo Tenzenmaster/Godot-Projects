@@ -6,21 +6,25 @@ namespace MyGame;
 
 public partial class Ui : CanvasLayer
 {
-	public bool IsMenuStackEmpty { get => _menuStack.Count == 0; }
+	[Export]
+	private bool _pushMainMenuOnReady;
 
+	public bool IsMenuStackEmpty { get => _menuStack.Count == 0; }
 	private Stack<Control> _menuStack = new();
 
 	public override void _Ready()
 	{
-		// Test
-		Push(GD.Load<PackedScene>("res://menu.tscn"), true);
+		if (_pushMainMenuOnReady)
+		{
+			Push(GD.Load<PackedScene>("res://ui/menus/main_menu.tscn"));
+		}
 	}
 
-	public void Push(PackedScene menuScene, bool pause)
+	public void Push(PackedScene menuScene)
 	{
-		GetTree().Paused = pause;
 		try
 		{
+			GetTree().Paused = true;
 			Control newMenu = menuScene.Instantiate<Control>();
 			if (!IsMenuStackEmpty) { _menuStack.Peek().Hide(); }
 			_menuStack.Push(newMenu);
@@ -28,21 +32,21 @@ public partial class Ui : CanvasLayer
 		}
 		catch (InvalidCastException e)
 		{
-			GD.PrintErr("Invalid cast to Control while pushing menu: ", e);
+			GD.PrintErr("Pushed a non-control Node to _menuStack: ", e);
 		}
 	}
 
-	public void Pop(bool pause)
+	public void Pop()
 	{
 		if (!IsMenuStackEmpty) { _menuStack.Pop().QueueFree(); }
 		if (!IsMenuStackEmpty) { _menuStack.Peek().Show(); }
-		GetTree().Paused = pause;
+		else { GetTree().Paused = false; }
 	}
 
-	public void Clear(bool pause)
+	public void Clear()
 	{
 		foreach (Control menu in _menuStack) { menu.QueueFree(); }
 		_menuStack.Clear();
-		GetTree().Paused = pause;
+		GetTree().Paused = false;
 	}
 }

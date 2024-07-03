@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7hknyvrsat0r"]
+
+[ext_resource type="PackedScene" uid="uid://cfa0h86yofkc5" path="res://ui/components/buttons/load_menu_button.tscn" id="1_m0ri6"]
+[ext_resource type="PackedScene" uid="uid://b8j6htb0xwdhc" path="res://ui/components/buttons/resume_button.tscn" id="1_sdmdu"]
+[ext_resource type="PackedScene" uid="uid://crtsfrvx7ybpj" path="res://ui/menus/settings_menu.tscn" id="2_rar8s"]
+[ext_resource type="PackedScene" uid="uid://dwj47y5pxm4c7" path="res://ui/components/buttons/quit_button.tscn" id="3_f41tn"]
+
+[node name="MainMenu" type="VBoxContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -33.0
+offset_right = 35.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResumeButton" parent="." instance=ExtResource("1_sdmdu")]
+layout_mode = 2
+
+[node name="SettingsButton" parent="." instance=ExtResource("1_m0ri6")]
+layout_mode = 2
+text = "Settings"
+targetMenu = ExtResource("2_rar8s")
+
+[node name="QuitButton" parent="." instance=ExtResource("3_f41tn")]
+layout_mode = 2

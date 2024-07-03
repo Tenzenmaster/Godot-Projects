@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwocs5t6lohx4"]
+
+[ext_resource type="Script" path="res://ui/components/buttons/BackButton.cs" id="1_lmfk1"]
+
+[node name="BackButton" type="Button"]
+text = "Back"
+script = ExtResource("1_lmfk1")
+
+[connection signal="pressed" from="." to="." method="OnPressed"]

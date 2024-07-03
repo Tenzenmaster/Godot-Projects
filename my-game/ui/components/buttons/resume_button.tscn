@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8j6htb0xwdhc"]
+
+[ext_resource type="Script" path="res://ui/components/buttons/ResumeButton.cs" id="1_gsxkw"]
+
+[node name="ResumeButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Resume"
+script = ExtResource("1_gsxkw")
+
+[connection signal="pressed" from="." to="." method="OnPressed"]

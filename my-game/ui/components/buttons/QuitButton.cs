@@ -5,7 +5,8 @@ namespace MyGame;
 
 public partial class QuitButton : Button
 {
-	public override void _Ready()
+	private void onPressed()
 	{
+		GetTree().Quit();
 	}
 }
